@@ -26,11 +26,7 @@ $(document).ready(async function () {
     renderPlayers(rooms);
   }
   
-<<<<<<< HEAD
   //  DATA FUNCTIONS
-=======
-  // FUNCIONES API GET
->>>>>>> 8958877471bbfb176f0a90b07f61ac2e791f823c
 
   function getUserFromLocalStorage() {
     const user = localStorage.getItem('user');
