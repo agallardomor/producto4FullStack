@@ -280,6 +280,7 @@ $(document).ready(async function () {
       emitTurn(turn);
     } else {
       alert('Juego finalizado');
+      sendNextTurn();
       endGame();
     }
   }
