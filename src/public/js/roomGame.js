@@ -304,7 +304,7 @@ $(document).ready(async function () {
       alert('Se ha alcanzado el máximo de usuarios por sala.');
     } else {
       const updatedRoom = await addUserToRoom(room);
-      // ROOM 
+
       if (updatedRoom) {
         const playersContainerElement = $(this).children('.players-container');
         $(dragElement).appendTo(playersContainerElement);

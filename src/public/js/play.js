@@ -25,8 +25,16 @@ $(document).ready(async function () {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-    });
-    return response.json();
+    })
+    if (response.status != 404) {
+      return response.json();
+    } else {
+      console.log("ERR")
+      emitPlayerOut();
+      navigateHome();
+      return
+    }
+
   }
 
   async function updateGame(game) {
@@ -169,17 +177,17 @@ $(document).ready(async function () {
   function renderBoard() {
     const board = $('#game-board').get(0);
     $(board).on('click', takeCell);
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 10; i++) {
       const row = createBoardRow();
       $(row).appendTo(board);
-      for (let j = 0; j < 3; j++) {
+      for (let j = 0; j < 10; j++) {
         const cell = createBoardCell(i, j);
         $(cell).appendTo(row);
       }
     }
   }
 
-  
+
   function renderActionButtons() {
     const user = getUserFromLocalStorage();
     const startButton = $(
@@ -205,6 +213,58 @@ $(document).ready(async function () {
   }
 
   // GAME LOGIC
+
+  const columnasMarcadas = [];
+  const filasMarcadas = [];
+
+  function checkPartidaGanadora(rowId, colId) {
+
+    //CREAMOS LOS ARRAYS
+    columnasMarcadas.push(colId);
+    filasMarcadas.push(rowId);
+
+    //ORDENAMOS LOS NUMEROS
+    columnasMarcadas.sort((a, b) => a - b);
+    filasMarcadas.sort((a, b) => a - b);
+
+    //ELIMINAMOS LOS DUPLICADOS
+    const uniqueColumns = columnasMarcadas.filter((number, index, array) => array.indexOf(number) === index);
+    const uniqueRows = filasMarcadas.filter((number, index, array) => array.indexOf(number) === index);
+
+    //CONVERTIMOS LOS ARRAYS A NUMERO
+    const uniqueColumnsAsNumbers = uniqueColumns.map(number => parseInt(number));
+    const uniqueRowsAsNumbers = uniqueRows.map(number => parseInt(number));
+
+    //COMPROBAMOS QUE SEA CONSECUTIVO, SI UNO DE LOS DOS LO ES, ENTONCES EL JUGADOR GANA
+
+    if (consecutivos(uniqueColumnsAsNumbers) || consecutivos(uniqueRowsAsNumbers)) {
+      alert('HAS GANADO!');
+      endGame();
+    }
+
+  }
+
+  function consecutivos(numbers) {
+    if (numbers.length < 10) {
+      // Si el array tiene menos de cinco elementos, no puede haber cinco números consecutivos
+      return false;
+    }
+
+    // Utilizamos un bucle para iterar sobre todas las subsecciones de tamaño 10 del array
+    for (let i = 0; i <= numbers.length - 10; i++) {
+      const subarray = numbers.slice(i, i + 10);  // Obtenemos una subsección del array
+
+      // Comprobamos si la subsección es consecutiva utilizando el método every()
+      if (subarray.every((number, index) => number === subarray[0] + index)) {
+        return true;
+      }
+    }
+
+    // Si hemos llegado hasta aquí, es que no hemos encontrado ninguna subsección consecutiva de tamaño 5
+    return false;
+  }
+
+
   function getCellTarget(rowId, colId) {
     return $(`[data-row=${rowId}][data-col=${colId}]`).get(0);
   }
@@ -231,6 +291,7 @@ $(document).ready(async function () {
       const rowId = $(cellTarget).attr('data-row');
       const colId = $(cellTarget).attr('data-col');
       const cell = getCellTarget(rowId, colId);
+      checkPartidaGanadora(rowId, colId);
       const userColor = getUserColor(user);
       $(cell).css('background-color', userColor);
       emitMovement({ rowId, colId, color: userColor });
@@ -372,7 +433,7 @@ $(document).ready(async function () {
 
   // SOCKET
   function setSocketListeners() {
-    socket.on('connect', () => {});
+    socket.on('connect', () => { });
 
     socket.on('disconnect', () => {
       endGame();
