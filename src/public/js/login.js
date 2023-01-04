@@ -11,7 +11,7 @@ $(document).ready(function () {
       password: formData.get('password'),
     };
 
-    fetch('http://localhost:3000/login', {
+    fetch('https://mzm04u-3000.preview.csb.app:443/login', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
