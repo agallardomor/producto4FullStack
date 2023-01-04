@@ -37,7 +37,7 @@ $(document).ready(async function () {
   }
 
   async function getUser(id) {
-    const response = await fetch(`https://q2mldu-3000.preview.csb.app:443/api/users/${id}`, {
+    const response = await fetch(`https://q2mldu-3000.preview.csb.app:80/api/users/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ $(document).ready(async function () {
   }
 
   async function getRooms() {
-    const response = await fetch('https://q2mldu-3000.preview.csb.app:443/api/rooms', {
+    const response = await fetch('https://q2mldu-3000.preview.csb.app:80/api/rooms', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ $(document).ready(async function () {
   }
 
   async function getRoom(id) {
-    const response = await fetch(`https://q2mldu-3000.preview.csb.app:443/api/rooms/${id}`, {
+    const response = await fetch(`https://q2mldu-3000.preview.csb.app:80/api/rooms/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ $(document).ready(async function () {
 
   async function updateRoom(room) {
     const response = await fetch(
-      `https://q2mldu-3000.preview.csb.app:443/api/rooms/${room._id}`,
+      `https://q2mldu-3000.preview.csb.app:80/api/rooms/${room._id}`,
       {
         method: 'PATCH',
         headers: {
@@ -104,7 +104,7 @@ $(document).ready(async function () {
       game: null,
     };
 
-    await fetch('https://q2mldu-3000.preview.csb.app:443/api/rooms', {
+    await fetch('https://q2mldu-3000.preview.csb.app:80/api/rooms', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ $(document).ready(async function () {
       roomId: room._id,
     };
 
-    const response = await fetch('https://q2mldu-3000.preview.csb.app:443/api/games', {
+    const response = await fetch('https://q2mldu-3000.preview.csb.app:80/api/games', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ $(document).ready(async function () {
     };
 
     const response = await fetch(
-      `https://q2mldu-3000.preview.csb.app:443/api/games/${room.game}`,
+      `https://q2mldu-3000.preview.csb.app:80/api/games/${room.game}`,
       {
         method: 'PATCH',
         headers: {
