@@ -282,7 +282,7 @@ $(document).ready(async function () {
       usuario.points = puntos;
     }
 
-     updatePoints(game._id, playerData, "stringgg")
+     updatePoints(game._id, playerData, "La partida ha comenzado")
   }
 
 

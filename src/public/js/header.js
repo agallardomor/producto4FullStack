@@ -39,9 +39,11 @@ $(document).ready(async function () {
 // VALIDATE LOGIN
 function validateLogin() {
   if (localStorage.getItem('user') === null){
-    if (document.location.pathname != '/login'){
-      window.location.href = "/login";
-    }  
+    if (document.location.pathname != '/signup'){
+      if (document.location.pathname != '/login'){
+        window.location.href = "/login";
+      }    
+    }
   }
 }
 
