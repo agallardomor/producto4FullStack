@@ -239,7 +239,7 @@ $(document).ready(async function () {
 
     if (consecutivos(uniqueColumnsAsNumbers) || consecutivos(uniqueRowsAsNumbers)) {
       alert('HAS GANADO! Ahora tienes un punto');
-      actualizarPuntosTest(game);
+      actualizarPuntos(game);
     }
 
   }
@@ -266,7 +266,7 @@ $(document).ready(async function () {
 
   // ACTUALIZAR PUNTOS
 
-  async function actualizarPuntosTest(game){
+  async function actualizarPuntos(game){
 
 
     let playerData = game.playersData;
