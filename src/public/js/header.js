@@ -38,10 +38,12 @@ $(document).ready(async function () {
 
 // VALIDATE LOGIN
 function validateLogin() {
-  var value = localStorage.getItem('user');
-  return value;
+  if (localStorage.getItem('user') === null){
+    if (document.location.pathname != '/login'){
+      window.location.href = "/login";
+    }  
+  }
 }
 
-if (typeof(validateLogin()) == "undefined" && document.location.pathname != '/login'){
-  window.location.href = "/login";
-}
+
+validateLogin();
