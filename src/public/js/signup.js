@@ -68,7 +68,7 @@ $(document).ready(function () {
       image: myFiles[inputKey],
     };
 
-    fetch('http://localhost:3000/signup', {
+    fetch('https://q2mldu-3000.preview.csb.app/signup', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

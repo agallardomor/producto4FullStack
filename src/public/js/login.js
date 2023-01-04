@@ -11,7 +11,7 @@ $(document).ready(function () {
       password: formData.get('password'),
     };
 
-    fetch('http://localhost:3000/login', {
+    fetch('https://q2mldu-3000.preview.csb.app/login', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
