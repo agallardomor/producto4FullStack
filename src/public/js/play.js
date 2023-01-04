@@ -238,8 +238,8 @@ $(document).ready(async function () {
     //COMPROBAMOS QUE SEA CONSECUTIVO, SI UNO DE LOS DOS LO ES, ENTONCES EL JUGADOR GANA
 
     if (consecutivos(uniqueColumnsAsNumbers) || consecutivos(uniqueRowsAsNumbers)) {
-      alert('HAS GANADO!');
-      endGame();
+      alert('HAS GANADO! Ahora tienes un punto');
+      actualizarPuntos(game);
     }
 
   }
@@ -262,6 +262,42 @@ $(document).ready(async function () {
 
     // Si hemos llegado hasta aquí, es que no hemos encontrado ninguna subsección consecutiva de tamaño 5
     return false;
+  }
+
+  // ACTUALIZAR PUNTOS
+
+  async function actualizarPuntos(game){
+
+
+    let playerData = game.playersData;
+    const userLocal = getUserFromLocalStorage();
+    const userID = userLocal._id;
+
+    const usuario = playerData.find(obj => obj.playerId === userID);
+    let puntos;
+
+    if (usuario) {
+      puntos = usuario.points + 1;
+      usuario.points = puntos;
+    }
+
+     updatePoints(game._id, playerData, "stringgg")
+  }
+
+
+
+  function updatePoints(gameId, playersData, turn) {
+    fetch('http://localhost:3000/api/games/' + gameId, {
+      method: 'PATCH',
+      headers: {
+      'accept': 'application/json',
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+      playersData: playersData,
+      turn: turn
+      })
+    })
   }
 
 
