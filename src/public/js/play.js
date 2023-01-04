@@ -240,6 +240,7 @@ $(document).ready(async function () {
     if (consecutivos(uniqueColumnsAsNumbers) || consecutivos(uniqueRowsAsNumbers)) {
       alert('HAS GANADO! Ahora tienes un punto');
       actualizarPuntos(game);
+      window.location.reload();
     }
 
   }
