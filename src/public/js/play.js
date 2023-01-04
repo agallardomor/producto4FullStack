@@ -19,7 +19,7 @@ $(document).ready(async function () {
 
   // FETCH
   async function getGameById(id) {
-    const response = await fetch(`https://q2mldu-3000.preview.csb.app:80/api/games/${id}`, {
+    const response = await fetch(`https://q2mldu-3000.preview.csb.app:443/api/games/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ $(document).ready(async function () {
 
   async function updateGame(game) {
     const response = await fetch(
-      `https://q2mldu-3000.preview.csb.app:80/api/games/${game._id}`,
+      `https://q2mldu-3000.preview.csb.app:443/api/games/${game._id}`,
       {
         method: 'PATCH',
         headers: {
@@ -53,7 +53,7 @@ $(document).ready(async function () {
   }
 
   async function getRooms() {
-    const response = await fetch('https://q2mldu-3000.preview.csb.app:80/api/rooms', {
+    const response = await fetch('https://q2mldu-3000.preview.csb.app:443/api/rooms', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ $(document).ready(async function () {
 
   async function updateRoom(room) {
     const response = await fetch(
-      `https://q2mldu-3000.preview.csb.app:80/api/rooms/${room._id}`,
+      `https://q2mldu-3000.preview.csb.app:443/api/rooms/${room._id}`,
       {
         method: 'PATCH',
         headers: {
@@ -79,7 +79,7 @@ $(document).ready(async function () {
   }
 
   async function getUser(id) {
-    const response = await fetch(`https://q2mldu-3000.preview.csb.app:80/api/users/${id}`, {
+    const response = await fetch(`https://q2mldu-3000.preview.csb.app:443/api/users/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -288,7 +288,7 @@ $(document).ready(async function () {
 
 
   function updatePoints(gameId, playersData, turn) {
-    fetch('https://q2mldu-3000.preview.csb.app:80/api/games/' + gameId, {
+    fetch('https://q2mldu-3000.preview.csb.app:443/api/games/' + gameId, {
       method: 'PATCH',
       headers: {
       'accept': 'application/json',
