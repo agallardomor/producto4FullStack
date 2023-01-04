@@ -37,9 +37,12 @@ $(document).ready(async function () {
 });
 
 // VALIDATE LOGIN
-function validateLogin(name) {
-  var value = "; " + localStorage.getItem('user');
-  var parts = value.split("; " + name + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
+function validateLogin() {
+  var value = localStorage.getItem('user');
+  return value;
 }
-  
+if (typeof(validateLogin()) != "undefined"){
+  if (document.location.pathname != '/login'){
+    window.location.href = "/login";
+  }
+}
