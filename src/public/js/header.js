@@ -35,3 +35,11 @@ $(document).ready(async function () {
     return null;
   }
 });
+
+// VALIDATE LOGIN
+function validateLogin(name) {
+  var value = "; " + localStorage.getItem('user');
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
+  
